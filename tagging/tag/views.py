@@ -3,20 +3,20 @@ from django.http import JsonResponse
 
 
 def tag(request):
-  t = request.GET.get('a', None)
+  tag = request.GET.get('tag', None)
   topic_tag=[]
   type_tag=[]
   sponsor_tag=[]
-  aa = TopicTag.objects.all().values('id', 'name')
-  bb = TypeTag.objects.all().values('id', 'name')
-  cc = SponsorTag.objects.all().values('id', 'name')
+  topics = TopicTag.objects.all().values('id', 'name')
+  types = TypeTag.objects.all().values('id', 'name')
+  sponsors = SponsorTag.objects.all().values('id', 'name')
   
-  for a in aa:
-    topic_tag.append(a)
-  for b in bb:
-    type_tag.append(b)
-  for c in cc:
-    sponsor_tag.append(c)
+  for topic in topics:
+    topic_tag.append(topic)
+  for type in types:
+    type_tag.append(type)
+  for sponsor in sponsors:
+    sponsor_tag.append(sponsor)
   return JsonResponse(
       {
           'topic': topic_tag,

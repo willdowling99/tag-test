@@ -8,12 +8,10 @@ def search(request):
   sponsors = request.GET.getlist('sponsors', None)
   data=[]
 
-  query = []
-
   if(topics):
     topic_qs = TopicTag.objects.filter(name__in=topics)
   else:
-      topic_qs = TopicTag.objects.all()
+    topic_qs = TopicTag.objects.all()
   if(types):
     type_qs = TypeTag.objects.filter(name__in=types)
   else:
@@ -28,10 +26,6 @@ def search(request):
   count = len(results)
   for r in results:
       data.append(r)
-  return JsonResponse(
-      {
-          'items': data,
-          'count': count
-      },
-      safe=False)
+  data.append({"count" : count})
+  return JsonResponse({data}, safe=False)
 
