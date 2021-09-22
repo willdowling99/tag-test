@@ -3,7 +3,6 @@ from django.http import JsonResponse
 
 
 def tag(request):
-  tag = request.GET.get('tag', None)
   topic_tag=[]
   type_tag=[]
   sponsor_tag=[]
