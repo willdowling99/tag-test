@@ -24,8 +24,7 @@ def search(request):
   
   results = BlogPage.objects.live().filter(topic_tags__in=topic_qs, type_tags__in=type_qs, sponsor_tags__in=sponsor_qs).values('title', 'topic_tags', 'type_tags', 'sponsor_tags')
   count = len(results)
-  for r in results:
-      data.append(r)
+  data = [r for r in results]
   data.append({"count" : count})
   return JsonResponse({data}, safe=False)
 
