@@ -7,7 +7,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
-from tags import views as tags_views
+from tag import views as tags_views
 
 urlpatterns = [
     path('django-admin/', admin.site.urls),
@@ -16,7 +16,7 @@ urlpatterns = [
     path('documents/', include(wagtaildocs_urls)),
 
     path('search/', search_views.search, name='search'),
-    path('tags/', tags_views.tags, name='tags'),
+    path('tags/', tags_views.tag, name='tag'),
 
 ]
 

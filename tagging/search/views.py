@@ -22,9 +22,9 @@ def search(request):
     sponsor_qs = SponsorTag.objects.all()
 
   
-  results = BlogPage.objects.live().filter(topic_tags__in=topic_qs, type_tags__in=type_qs, sponsor_tags__in=sponsor_qs).values('title', 'topic_tags', 'type_tags', 'sponsor_tags')
+  results = BlogPage.objects.live().filter(topic_tags__in=topic_qs, type_tags__in=type_qs, sponsor_tags__in=sponsor_qs).values()
   count = len(results)
   data = [r for r in results]
   data.append({"count" : count})
-  return JsonResponse({data}, safe=False)
+  return JsonResponse({'items':data}, safe=False)
 
