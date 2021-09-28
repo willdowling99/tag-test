@@ -15,10 +15,8 @@ def search(request):
     tag_filters["type_tags__in"] = TypeTag.objects.filter(name__in=types)
   if(sponsors):
     tag_filters["sponsor_tags__in"] = SponsorTag.objects.filter(name__in=sponsors)
-  print(tag_filters)
   results = BlogPage.objects.live().filter(**tag_filters).values()
   count = len(results)
   data = [r for r in results]
   data.append({"count" : count})
   return JsonResponse({'items':data}, safe=False)
-
